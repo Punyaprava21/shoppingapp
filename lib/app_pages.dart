@@ -32,11 +32,7 @@ class AppPages {
   static const bookings = '/bookings';
 
   static final pages = [
-    GetPage(
-      name: splash,
-      page: () => const SplashScreen(),
-      binding: SplashBinding(),
-    ),
+    GetPage(name: splash, page: () => SplashScreen(), binding: SplashBinding()),
     GetPage(name: login, page: () => LoginScreen(), binding: LoginBinding()),
     GetPage(
       name: register,

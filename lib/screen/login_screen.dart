@@ -35,11 +35,15 @@ class LoginScreen extends StatelessWidget {
                       // 🔹 Logo
                       CircleAvatar(
                         radius: isTablet ? 60 : 45,
-                        backgroundColor: (isDark ? kPrimaryColorDark : kPrimaryColorLight).withOpacity(0.1),
+                        backgroundColor:
+                            (isDark ? kPrimaryColorDark : kPrimaryColorLight)
+                                .withOpacity(0.1),
                         child: Icon(
                           Icons.electrical_services_rounded,
                           size: isTablet ? 60 : 40,
-                          color: isDark ? kPrimaryColorDark : kPrimaryColorLight,
+                          color: isDark
+                              ? kPrimaryColorDark
+                              : kPrimaryColorLight,
                         ),
                       ),
 
@@ -72,10 +76,14 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.all(isTablet ? 32 : 20),
                         decoration: BoxDecoration(
                           color: isDark ? kCardDark : kCardLight,
-                          borderRadius: BorderRadius.circular(kCardBorderRadius * 1.5),
+                          borderRadius: BorderRadius.circular(
+                            kCardBorderRadius * 1.5,
+                          ),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.black.withOpacity(isDark ? 0.2 : 0.07),
+                              color: Colors.black.withOpacity(
+                                isDark ? 0.2 : 0.07,
+                              ),
                               blurRadius: 10,
                               offset: const Offset(0, 5),
                             ),
@@ -101,16 +109,20 @@ class LoginScreen extends StatelessWidget {
                                   controller: controller.passwordController,
                                   label: "Password",
                                   icon: Icons.lock_outline_rounded,
-                                  obscureText: controller.isPasswordHidden.value,
+                                  obscureText:
+                                      controller.isPasswordHidden.value,
                                   validator: controller.validatePassword,
                                   suffixIcon: IconButton(
                                     icon: Icon(
                                       controller.isPasswordHidden.value
                                           ? Icons.visibility_off_rounded
                                           : Icons.visibility_rounded,
-                                      color: isDark ? kPrimaryColorDark : kPrimaryColorLight,
+                                      color: isDark
+                                          ? kPrimaryColorDark
+                                          : kPrimaryColorLight,
                                     ),
-                                    onPressed: controller.togglePasswordVisibility,
+                                    onPressed:
+                                        controller.togglePasswordVisibility,
                                   ),
                                 ),
                               ),
@@ -124,13 +136,21 @@ class LoginScreen extends StatelessWidget {
                                 child: ElevatedButton(
                                   onPressed: controller.handleLogin,
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: isDark ? kPrimaryColorDark : kPrimaryColorLight,
+                                    backgroundColor: isDark
+                                        ? kPrimaryColorDark
+                                        : kPrimaryColorLight,
                                     foregroundColor: Colors.white,
                                     shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(kCardBorderRadius),
+                                      borderRadius: BorderRadius.circular(
+                                        kCardBorderRadius,
+                                      ),
                                     ),
                                     elevation: 3,
-                                    shadowColor: (isDark ? kPrimaryColorDark : kPrimaryColorLight).withOpacity(0.3),
+                                    shadowColor:
+                                        (isDark
+                                                ? kPrimaryColorDark
+                                                : kPrimaryColorLight)
+                                            .withOpacity(0.3),
                                   ),
                                   child: Text(
                                     "Login",
@@ -164,7 +184,9 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               "Register",
                               style: TextStyle(
-                                color: isDark ? kSecondaryColorDark : kSecondaryColorLight,
+                                color: isDark
+                                    ? kSecondaryColorDark
+                                    : kSecondaryColorLight,
                                 fontWeight: FontWeight.w600,
                                 fontSize: isTablet ? 17 : 15,
                                 decoration: TextDecoration.underline,
@@ -198,7 +220,6 @@ class LoginScreen extends StatelessWidget {
     Widget? suffixIcon,
   }) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-
     return TextFormField(
       controller: controller,
       keyboardType: keyboardType,
@@ -208,17 +229,26 @@ class LoginScreen extends StatelessWidget {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: TextStyle(color: isDark ? kSubtextDark : kSubtextLight),
-        prefixIcon: Icon(icon, color: isDark ? kPrimaryColorDark : kPrimaryColorLight, size: kIconSize),
+        prefixIcon: Icon(
+          icon,
+          color: isDark ? kPrimaryColorDark : kPrimaryColorLight,
+          size: kIconSize,
+        ),
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: isDark ? kBackgroundDark.withOpacity(0.4) : kBackgroundLight.withOpacity(0.9),
+        fillColor: isDark
+            ? kBackgroundDark.withOpacity(0.4)
+            : kBackgroundLight.withOpacity(0.9),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(kCardBorderRadius),
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(kCardBorderRadius),
-          borderSide: BorderSide(color: isDark ? kPrimaryColorDark : kPrimaryColorLight, width: 1.6),
+          borderSide: BorderSide(
+            color: isDark ? kPrimaryColorDark : kPrimaryColorLight,
+            width: 1.6,
+          ),
         ),
       ),
     );

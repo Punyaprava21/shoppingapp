@@ -1,19 +1,16 @@
-import 'dart:async';
 import 'package:customertech/controller/splash_controller.dart';
-import 'package:customertech/screen/login_screen.dart';
+import 'package:customertech/screen/pulsingdots_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
+  SplashScreen({Key? key}) : super(key: key);
+
+  final SplashScreenController _controller = Get.put(SplashScreenController());
 
   @override
   Widget build(BuildContext context) {
-    final SplashController controller = Get.put(SplashController());
-
-    // Start timer as soon as widget builds
-    Timer(const Duration(seconds: 3), () {
-     Get.to(()=> LoginScreen());
-    });
+    _controller.navigateAfterDelay(context);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -21,30 +18,23 @@ class SplashScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // 🔹 App Logo
+            // App logo
             Image.asset(
-              'assets/images/logo.png', // change to your logo path
+              'assets/logo.png', // replace with your actual logo path
               height: 120,
+              width: 120,
             ),
             const SizedBox(height: 20),
-
-            // 🔹 App Title
             const Text(
-              'Customer Booking App',
+              "Customer Book",
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
-                color: Colors.black,
+                color: Colors.black87,
               ),
             ),
-
-            const SizedBox(height: 16),
-
-            // 🔹 Loading Indicator
-            const CircularProgressIndicator(
-              color: Colors.amber,
-              strokeWidth: 3,
-            ),
+            const SizedBox(height: 40),
+            const PulsingDots(),
           ],
         ),
       ),

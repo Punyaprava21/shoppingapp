@@ -1,49 +1,51 @@
+import 'package:customertech/apiservice/register_service.dart';
 import 'package:customertech/screen/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   final formKey = GlobalKey<FormState>();
-  final nameController = TextEditingController();
-  final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final isPasswordHidden = true.obs;
+  final isLoading = false.obs;
+  final ApiService _apiService = Get.find<ApiService>();
 
-  void togglePasswordVisibility() {
-    isPasswordHidden.toggle();
-  }
+  /// Toggle password visibility
+  void togglePasswordVisibility() => isPasswordHidden.toggle();
 
+  /// Validate phone number
   String? validatePhone(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your phone number';
-    }
-    if (!RegExp(r'^\+?1?\d{9,15}$').hasMatch(value)) {
-      return 'Please enter a valid phone number';
-    }
+    if (value == null || value.isEmpty) return 'Please enter phone number';
+    if (!RegExp(r'^\d{10,15}$').hasMatch(value)) return 'Invalid phone number';
     return null;
   }
 
+  /// Validate password
   String? validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter your password';
-    }
-    if (value.length < 6) {
-      return 'Password must be at least 6 characters';
-    }
+    if (value == null || value.isEmpty) return 'Please enter password';
+    if (value.length < 6) return 'Password must be at least 6 characters';
     return null;
   }
 
-  void handleLogin() {
-    if (formKey.currentState!.validate()) {
-      Get.off(() => const MainScreen());
+  /// Handle login
+ void handleLogin() async {
+  if (formKey.currentState!.validate()) {
+    final result = await ApiService().loginUser(
+      mobileNumber: phoneController.text.trim(),
+      password: passwordController.text.trim(),
+    );
+
+    if (result['success'] == true) {
+      Get.offAllNamed('/main'); // Navigate to main screen
+    } else {
+      Get.snackbar('Login Failed', result['message']);
     }
   }
+}
 
   @override
   void onClose() {
-    nameController.dispose();
-    emailController.dispose();
     phoneController.dispose();
     passwordController.dispose();
     super.onClose();

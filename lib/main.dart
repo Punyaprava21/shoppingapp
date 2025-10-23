@@ -16,7 +16,7 @@ class CustomerTechApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "CustomerTech Services",
       themeMode: ThemeMode.system,
-      initialRoute: AppPages.login,
+      initialRoute: AppPages.splash,
       getPages: AppPages.pages,
       theme: ThemeData(
         brightness: Brightness.light,
